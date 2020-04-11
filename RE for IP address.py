@@ -5,8 +5,8 @@ import re
 
 with open('result1.txt','r') as f:
     f2 = str(f.readlines())
-    patterns = re.findall(r"http[s]?://(?:[0-9]{1,3}\.){3}[0-9]{1,3}\:[0-9]{1,5}",f2,re.S)
-    #如果txt没有http[s]，直接输入r"(?:[0-9]{1,3}\.){3}[0-9]{1,3}:?[0-9]{1,5}"即可。
+    patterns = re.findall(r"http[s]?://(?:[0-9]{1,3}.){3}[0-9]{1,3}:[0-9]{1,5}",f2,re.S)
+    #如果txt没有http[s]，直接输入r"(?:[0-9]{1,3}.){3}[0-9]{1,3}:[0-9]{1,5}"即可。
     if patterns:
         print("RE can find the IP Address! Pls check the ip_addr.txt")
         with open('ip_addr.txt', 'w+') as ips:
