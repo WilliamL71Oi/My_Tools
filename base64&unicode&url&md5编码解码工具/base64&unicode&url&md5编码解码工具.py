@@ -82,7 +82,7 @@ def md5_de():
                 if text == line.strip():
                     r = '\n' + text + ' MD5解密为：'
                     print(r, end='')
-                    print(''.join(islice(f, 1)))
+                    print(''.join(islice(f, 1)))    # 获取60万条MD5密文.txt里text内容的下一行数据。
                     break
             else:
                 print('\n您输入的MD5解密无匹配结果。')
