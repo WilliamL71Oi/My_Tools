@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
 
+"""
+@author WilliamL71Oi
+@date   2020/06/01
+"""
+
 import requests
 import base64
 import re
