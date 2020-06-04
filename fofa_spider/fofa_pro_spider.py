@@ -3,7 +3,7 @@
 
 """
 @author WilliamL71Oi
-@date   2020/06/01
+@date   2020/05/01
 """
 
 import requests
@@ -46,7 +46,7 @@ def spider():
                     print(j)
                 if i == int(pages2):
                     break
-                time.sleep(12)
+                time.sleep(10)
             print("已完成！请查看输出的txt！！")
     except IndexError:
         print('\n获得 0 条匹配结果,可能是语法或关键字或者搜索结果少于一页，请检查语法或者搜索的关键字。')
