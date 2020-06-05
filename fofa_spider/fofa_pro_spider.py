@@ -3,7 +3,7 @@
 
 """
 @author WilliamL71Oi
-@date   2020/05/01
+@date   2020/06/06
 """
 
 import requests
@@ -13,6 +13,8 @@ import time
 from lxml import etree
 from urllib.parse import quote
 
+
+# 官网登录fofa vip帐号后，F12-network-cookie-_fofapro_ars_session=-获取cookie的值。
 cookie = 'b112838b18495f2e7629f447e49c5929'
 
 
@@ -24,15 +26,14 @@ def spider():
     }
     search = input()
     searchbs64 = str(base64.b64encode(search.encode('utf-8')), 'utf-8')
-    searchbs64_encode = quote(searchbs64, 'utf-8')  # fofa的url  是需要把base64部分进行url编码
+    searchbs64_encode = quote(searchbs64, 'utf-8')  # fofa的url是需要把base64部分进行url编码
     print("\n需要爬行的链接为:\nhttps://fofa.so/result?q=" + search + "&qbase64=" + searchbs64_encode)
     html = requests.get(url="https://fofa.so/result?q=" + search + "&qbase64=" + searchbs64_encode, headers=header).text
-    pagesnums = re.findall('>(\d*)</a> <a class="next_page" rel="next"', html)
-    print("发现的总页数: " + pagesnums[0])
-    # get_pages = input("请输入需要获取的页数（一页有10个链接）: \n")
-    pages1 = input("请输入开始页数： ")
-    pages2 = input("请输入结束页数： ")
     try:
+        pagesnums = re.findall('>(\d*)</a> <a class="next_page" rel="next"', html)
+        print("发现的总页数: " + pagesnums[0])
+        pages1 = input("请输入开始页数： ")
+        pages2 = input("请输入结束页数： ")
         with open("result1.txt", "a+") as result:
             for i in range(int(pages1), int(pages2)):
                 print("\n现在写入第 " + str(i) + " 页。\n")
@@ -47,9 +48,9 @@ def spider():
                 if i == int(pages2):
                     break
                 time.sleep(10)
-            print("已完成！请查看输出的txt！！")
+            print("\n已完成！请查看输出的txt！！")
     except IndexError:
-        print('\n获得 0 条匹配结果,可能是语法或关键字或者搜索结果少于一页，请检查语法或者搜索的关键字。')
+        print('\n您搜索的 {} 获得 0 条匹配结果,可能是语法或关键字问题，或者搜索结果少于一页，请检查语法或者搜索的关键字。'.format(search))
 
 
 def start():
