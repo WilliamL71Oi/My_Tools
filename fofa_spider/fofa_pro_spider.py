@@ -3,7 +3,8 @@
 
 """
 @author WilliamL71Oi
-@date   2020/06/06
+@date   2020/07/30
+@note   已适配新版fofa
 """
 
 import requests
@@ -41,7 +42,7 @@ def spider():
                                         searchbs64_encode, headers=header)
                 print("https://fofa.so/result?page=" + str(i) + "&q=" + search + "&qbase64=" + searchbs64_encode + "\n")
                 tree = etree.HTML(pagesurl.text)
-                urllist = tree.xpath('//div[@class="list_mod_t"]//a[@target="_blank"]/@href')
+                urllist = tree.xpath('//div[@class="re-domain"]//a[@target="_blank"]/@href')
                 for j in urllist:
                     result.write(j + "\n")
                     print(j)
