@@ -3,13 +3,14 @@
 
 """
 通过pandas库提取excel内的IP地址
-2021-06-19
+2021-06-21
 """
 
 import pandas as pd
 import re
 
 df = pd.read_csv("2021.csv", engine='python', encoding='GB18030')  # 如果csv内容有中文，需要encoding=GB18030
+# df = pd.read_excel("2021.xlsx")   # xlsx格式，如果提示错误，安装xlrd和openpyxl库
 d1 = pd.DataFrame(df)
 
 # 获取某一列
