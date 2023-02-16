@@ -7,6 +7,7 @@
 """
 
 import openai
+import datetime
 from termcolor import colored
 from pygments import highlight
 from pygments.lexers import PythonLexer
@@ -14,7 +15,7 @@ from pygments.formatters.terminal256 import Terminal256Formatter
 from tenacity import retry, stop_after_attempt, wait_random
 
 
-openai.api_key = "Yourkey"
+openai.api_key = "Youkey"
 
 # 使用说明
 print('\n' + "ChatGPT脚本使用说明：")
@@ -48,8 +49,12 @@ def chat(prompt):
 text = ""  # 设置一个字符串变量
 turns = []  # 设置一个列表变量，turn指对话时的话轮
 
+# 显示当前时间
+currentTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 while True:  # 能够连续提问
-    question1 = input(colored(">>>You: " + '\n', 'green'))
+    print(colored(">>>You: ", 'green'))
+    question1 = input()
     # 定义一个函数convert_to_string()
 
     def convert_to_string():
@@ -66,11 +71,11 @@ while True:  # 能够连续提问
     # 调用函数
     question = question1 + convert_to_string()
     # print(question)   #用于调试
-    print(colored('Thinking...Please wait...' +'\n', 'cyan'))
+    print(colored('>>>ChatAI:Thinking...Please wait...' + '\n', 'cyan'))
     if len(question.strip()) == 0:  # 如果输入为空，提醒输入问题
         print(">>>ChatAI:please input your question!" + '\n')
     elif question.lower() == "quit":  # 如果输入为"quit"，程序终止
-        print("\nChatAI: See You Next Time!")
+        print(">>>ChatAI: See You Next Time!")
         break
     else:
         prompt = text + "\n" + question
@@ -80,7 +85,7 @@ while True:  # 能够连续提问
             # 因为len(prompt)算的是字符数,2000这个字符数可以自己调整，估计不超过5000一般都可以。
             result = chat(prompt[-2000:])
         turns += [question] + [result]  # 只有这样迭代才能连续提问理解上下文
-        print(colored(">>>ChatAI:", 'magenta'))
+        print(colored(">>>ChatAI:" + "(" + currentTime + ")", 'magenta'))
 
         # 调用 Pygments 的 highlight 方法，传入需要高亮显示的字符串以及需要使用的语言：
         highlighted_string = highlight(
