@@ -17,7 +17,7 @@ openai.api_key = "Your-key"
 
 # 使用说明
 print('\n' + "ChatGPT脚本使用说明：")
-print('1.该脚本支持多行输入；')
+print('1.该脚本支持多行输入(但不包括空行)；')
 print('2.由于无需科学上网即可使用，所以等待答复的时间可能有点长；')
 print('3.需要添加openai.api_key：注册ChatGPT后登陆https://platform.opanai.com可新建自己的key')
 print("4.输入两次回车后等待下即可看到回复；")
