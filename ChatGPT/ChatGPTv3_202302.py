@@ -3,7 +3,7 @@
 
 """
 @author WilliamL71Oi
-@date   2023/02/16
+@date   2023/02/20
 """
 
 import openai
@@ -15,18 +15,19 @@ from pygments.formatters.terminal256 import Terminal256Formatter
 from tenacity import retry, stop_after_attempt, wait_random
 
 
-openai.api_key = "Youkey"
+openai.api_key = "YourKey"
 
 # 使用说明
-print('\n' + "ChatGPT脚本使用说明：")
+print(colored('\n' + "ChatGPT脚本使用说明：", 'red', attrs=['blink', 'bold']))
 print('1.该脚本支持多行输入(但不包括空行)；')
 print('2.由于无需科学上网即可使用，所以等待答复的时间可能有点长；')
 print('3.需要添加openai.api_key：注册ChatGPT后登陆https://platform.opanai.com可新建自己的key；')
 print("4.输入两次回车后等待下即可看到回复；")
 print("5.输入'quit'即可退出程序。" + '\n')
 
-
 # 反复提交问题，这里指定提交6次,每次等待1-3秒。可根据自己情况修改。
+
+
 @retry(stop=stop_after_attempt(6), wait=wait_random(min=1, max=3))
 def chat(prompt):
     response = openai.Completion.create(
@@ -55,8 +56,8 @@ currentTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 while True:  # 能够连续提问
     print(colored(">>>You: ", 'green'))
     question1 = input()
-    # 定义一个函数convert_to_string()
 
+    # 定义一个函数convert_to_string()
     def convert_to_string():
         result = ""
         # 创建一个循环，当用户输入两次回车表示输入结束
@@ -73,7 +74,7 @@ while True:  # 能够连续提问
     # print(question)   #用于调试
     print(colored('>>>ChatAI:Thinking...Please wait...' + '\n', 'cyan'))
     if len(question.strip()) == 0:  # 如果输入为空，提醒输入问题
-        print(">>>ChatAI:please input your question!" + '\n')
+        print(colored(">>>ChatAI:please input your question!" + '\n', 'blue'))
     elif question.lower() == "quit":  # 如果输入为"quit"，程序终止
         print(">>>ChatAI: See You Next Time!")
         break
