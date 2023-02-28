@@ -3,11 +3,12 @@
 
 """
 @author WilliamL71Oi
-@date   2023/02/20
+@date   2023/02/28
 """
 
 import openai
 import datetime
+from datetime import timezone
 from termcolor import colored
 from pygments import highlight
 from pygments.lexers import PythonLexer
@@ -50,8 +51,8 @@ def chat(prompt):
 text = ""  # 设置一个字符串变量
 turns = []  # 设置一个列表变量，turn指对话时的话轮
 
-# 显示当前时间
-currentTime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+# 显示当前北京时间
+currentTime = datetime.datetime.now(timezone(datetime.timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S")
 
 while True:  # 能够连续提问
     print(colored(">>>You: ", 'green'))
